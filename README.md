@@ -3,6 +3,8 @@ list physical therapists for a location through yelp api
 
 This app will hit the Yelp endpoint and get the results for physical therapists near the location that user enters.
 
+Things to note : Yelp API returns maximum 50 results for any endpoint.
+
 Stack used :
 
 1. React.js
