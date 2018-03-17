@@ -10,9 +10,6 @@ class Search extends React.Component {
 
 	constructor() {
         super();
-        this.state = {
-            searchTerm: ''
-        };
         this.state = yelpStore.getState();
         this._onChange = this._onChange.bind(this);
     }
@@ -20,10 +17,6 @@ class Search extends React.Component {
     componentDidMount() {
         yelpStore.addChangeListener(this._onChange);
     }
-
-	_handleOnChange = (e) => {
-		this.setState({ searchTerm: e.target.value });
-	}
 
 	_onChange() {
         this.setState(yelpStore.getState());
@@ -34,7 +27,7 @@ class Search extends React.Component {
     }
 
     _getAllPTs = () => {
-    	yelpActions.getAllPTs(this.state.searchTerm);
+    	yelpActions.getAllPTs(this.refs.locationInput.value);
     }
 
     render() {
@@ -45,7 +38,7 @@ class Search extends React.Component {
     	            <div className="col-md-8" style={ colStyle }>
     	            	<form className="navbar-form navbar-left" role="search">
     						<div className="form-group">
-    							<input type="text" className="form-control" placeholder="Enter a city" onChange={ this._handleOnChange }/>
+    							<input type="text" className="form-control" placeholder="Search by address, neighborhood, city, state or zip, optional country" ref="locationInput"/>
     						</div>
     					</form>
     	            </div>

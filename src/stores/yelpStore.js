@@ -23,9 +23,10 @@ const _errorToMessage = (err) => _state.message = err;
 
 //get the data from the endpoint
 const _getAllPTs = async(location) => {
-	_state.currentLocation = location;
-	_state.message = '';
+	resetState();
 	try {
+		if (!location) throw "Please enter a location";
+		_state.currentLocation = location;
 		const data = await fetch(`/api/getAllPTs/${location}`, { method: 'get'});
 		const json = await data.json();
 		if (json.error) throw json.error.description;
